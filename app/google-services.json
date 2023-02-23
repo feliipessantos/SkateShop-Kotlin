@@ -1,0 +1,47 @@
+{
+  "project_info": {
+    "project_number": "815462953710",
+    "project_id": "skate-shop-2605c",
+    "storage_bucket": "skate-shop-2605c.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:815462953710:android:6e8f4f2fdac71217a4f9ff",
+        "android_client_info": {
+          "package_name": "com.example.skateshop"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "815462953710-1na18m49n0sbuc72gsdk5busnig2tn9t.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.example.skateshop",
+            "certificate_hash": "684450ee8bc9a474aa789cdb5b2017649562b41d"
+          }
+        },
+        {
+          "client_id": "815462953710-410iavg6dn8v3icrm3sne57ij260abh3.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBqYDA7rHe6HsSHkd29riefessAPI1Cr0Y"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "815462953710-410iavg6dn8v3icrm3sne57ij260abh3.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

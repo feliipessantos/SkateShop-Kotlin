@@ -1,0 +1,10 @@
+<resources>
+    <string name="app_name">Skate Shop</string>
+    <string name="title">Skate Shop</string>
+    <string name="hint_email">Email</string>
+    <string name="hint_pass">Password</string>
+    <string name="hint_name">Name</string>
+    <string name="bt_singin">Sing In</string>
+    <string name="singUp">Sing Up</string>
+    <string name="singUp_helper">No have a account? Sing Up.</string>
+</resources>
