@@ -1,13 +1,15 @@
-package com.example.skateshop
+package com.example.skateshop.activities
 
 import android.content.Intent
 import android.graphics.Color
 import android.os.Bundle
+import android.os.Handler
+import android.os.Looper
 import androidx.activity.result.ActivityResult
 import androidx.activity.result.contract.ActivityResultContracts
 import androidx.appcompat.app.AppCompatActivity
 import com.example.skateshop.databinding.ActivityMainBinding
-import com.google.android.gms.auth.api.identity.BeginSignInRequest
+import com.example.skateshop.Dialog.DialogLoading
 import com.google.android.gms.auth.api.signin.GoogleSignIn
 import com.google.android.gms.auth.api.signin.GoogleSignInClient
 import com.google.android.gms.auth.api.signin.GoogleSignInOptions
@@ -40,7 +42,7 @@ class MainActivity : AppCompatActivity() {
 
         googleSingInClient = GoogleSignIn.getClient(this, gso)
 
-        binding.btSingIn.setOnClickListener { view ->
+        binding.btSignIn.setOnClickListener { view ->
             val email = binding.editEmail.text.toString()
             val password = binding.editPass.text.toString()
 
@@ -66,12 +68,12 @@ class MainActivity : AppCompatActivity() {
                     }
             }
         }
-        binding.txtSingUp.setOnClickListener {
+        binding.txtSignUp.setOnClickListener {
             val intent = Intent(this, SingUpActivity::class.java)
             startActivity(intent)
         }
-        binding.txtSingUpGoogle.setOnClickListener {
-           singIn()
+        binding.txtSignInGoogle.setOnClickListener {
+            singIn()
         }
     }
 
@@ -88,14 +90,14 @@ class MainActivity : AppCompatActivity() {
             val taks = GoogleSignIn.getSignedInAccountFromIntent(int)
             try {
                 val account = taks.getResult(ApiException::class.java)
-                singInWithGoogle(account.idToken!!)
-            } catch (exeption: ApiException){
+                signInWithGoogle(account.idToken!!)
+            } catch (_: ApiException){
 
             }
         }
     }
 
-    private fun singInWithGoogle(token: String) {
+    private fun signInWithGoogle(token: String) {
         val credential = GoogleAuthProvider.getCredential(token, null)
         auth.signInWithCredential(credential).addOnCompleteListener(this) {
             task: Task<AuthResult> ->
@@ -108,7 +110,6 @@ class MainActivity : AppCompatActivity() {
                 snackbar.show()
             }
         }
-
     }
 
     private fun navigateToProductsActivity() {

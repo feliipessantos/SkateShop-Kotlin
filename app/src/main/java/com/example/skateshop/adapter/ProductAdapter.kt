@@ -1,10 +1,12 @@
 package com.example.skateshop.adapter
 
 import android.content.Context
+import android.content.Intent
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
+import com.example.skateshop.activities.DetailsProduct
 import com.example.skateshop.databinding.ProductItemBinding
 import com.example.skateshop.model.Product
 
@@ -29,5 +31,13 @@ class ProductAdapter(val context: Context, val product_list: MutableList<Product
         Glide.with(context).load(product_list.get(position).img).into(holder.img)
         holder.name.text = product_list.get(position).name
         holder.price.text = "$ ${product_list.get(position).price}"
+
+        holder.itemView.setOnClickListener {
+            val intent = Intent(context, DetailsProduct::class.java)
+            intent.putExtra("img", product_list.get(position).img)
+            intent.putExtra("name", product_list.get(position).name)
+            intent.putExtra("price", product_list.get(position).price)
+            context.startActivity(intent)
+        }
     }
 }

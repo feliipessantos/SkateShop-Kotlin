@@ -4,7 +4,12 @@
     <string name="hint_email">Email</string>
     <string name="hint_pass">Password</string>
     <string name="hint_name">Name</string>
-    <string name="bt_singin">Sing In</string>
-    <string name="singUp">Sing Up</string>
-    <string name="singUp_helper">No have a account? Sing Up.</string>
+    <string name="bt_singin">Log In</string>
+    <string name="signUp">Sign Up</string>
+    <string name="singUp_helper">No have a account? Register.</string>
+    <string name="loading">Loading...</string>
+    <string name="buy">BUY</string>
+    <string name="product_image">Product Image</string>
+    <string name="description_img_product">Image product</string>
+    <string name="finish_cart">Finish</string>
 </resources>

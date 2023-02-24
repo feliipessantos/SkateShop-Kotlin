@@ -1,4 +1,4 @@
-package com.example.skateshop
+package com.example.skateshop.activities
 
 import android.content.Intent
 import android.graphics.Color
@@ -6,6 +6,7 @@ import android.os.Bundle
 import android.os.Handler
 import android.os.Looper
 import androidx.appcompat.app.AppCompatActivity
+import com.example.skateshop.DB.DB
 import com.example.skateshop.databinding.ActivitySingUpBinding
 import com.google.android.material.snackbar.Snackbar
 import com.google.firebase.FirebaseNetworkException

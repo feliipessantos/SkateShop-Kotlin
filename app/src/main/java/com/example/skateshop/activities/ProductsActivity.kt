@@ -1,13 +1,17 @@
-package com.example.skateshop
+package com.example.skateshop.activities
 
 import android.content.Intent
 import android.graphics.Color
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import android.view.LayoutInflater
+import android.os.Handler
+import android.os.Looper
 import android.view.Menu
 import android.view.MenuItem
 import androidx.recyclerview.widget.GridLayoutManager
+import com.example.skateshop.DB.DB
+import com.example.skateshop.Dialog.DialogLoading
+import com.example.skateshop.R
 import com.example.skateshop.adapter.ProductAdapter
 import com.example.skateshop.databinding.ActivityProductsBinding
 import com.example.skateshop.model.Product
@@ -17,6 +21,7 @@ class ProductsActivity : AppCompatActivity() {
     private lateinit var binding: ActivityProductsBinding
     lateinit var productAdapter: ProductAdapter
     var product_list: MutableList<Product> = mutableListOf()
+    val dialogLoading = DialogLoading(this)
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -32,6 +37,7 @@ class ProductsActivity : AppCompatActivity() {
         productAdapter = ProductAdapter(this, product_list)
         recycler_products.adapter = productAdapter
 
+        handlerDialog()
         DB().getProductList(product_list, productAdapter)
 
     }
@@ -61,5 +67,12 @@ class ProductsActivity : AppCompatActivity() {
         val intent = Intent(this, MainActivity::class.java)
         startActivity(intent)
         finish()
+    }
+
+    private fun handlerDialog(){
+        dialogLoading.DialogLoadingInit()
+        Handler(Looper.getMainLooper()).postDelayed({
+            dialogLoading.DialogLoadingFinish()
+        }, 1500)
     }
 }
