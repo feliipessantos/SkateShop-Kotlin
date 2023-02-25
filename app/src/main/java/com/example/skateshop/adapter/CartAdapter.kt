@@ -27,7 +27,9 @@ class CartAdapter(val context: Context, val cart_list: MutableList<Product>) :
         Glide.with(context).load(cart_list.get(position).img).into(holder.img)
         holder.name.text = cart_list.get(position).name
         holder.price.text = "$ ${cart_list.get(position).price}"
+        holder.adapterPosition
     }
 
     override fun getItemCount() = cart_list.size
 }
+

@@ -36,7 +36,7 @@
         android:layout_marginTop="20dp"
         android:backgroundTint="@color/red"
         android:padding="5dp"
-        android:text="Clear"
+        android:text="@string/clear_all"
         android:textAllCaps="false"
         android:textColor="@color/white"
         android:textSize="18sp"

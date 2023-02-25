@@ -1,13 +1,11 @@
 package com.example.skateshop.activities
 
 import android.content.Intent
-import android.graphics.Color
 import android.os.Bundle
 import android.view.Menu
 import android.view.MenuItem
 import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.GridLayoutManager
-import com.bumptech.glide.Glide
 import com.example.skateshop.DB.DB
 import com.example.skateshop.R
 import com.example.skateshop.adapter.CartAdapter
@@ -25,8 +23,6 @@ class CartActivity : AppCompatActivity() {
         binding = ActivityCartBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
-        window.statusBarColor = Color.parseColor("#00204B")
-
         val recycler_cart = binding.recyclerCart
 
         recycler_cart.layoutManager = GridLayoutManager(this, 1)
@@ -36,20 +32,14 @@ class CartActivity : AppCompatActivity() {
 
         DB().getPurchesedProducts(cart_list, cartAdapter)
 
-        //captura id dentro do produto
-        // precisa colocar botão e rastrar clice nesse id
-        // deletar aquele que foi clicado
-        // talvez colocar funcao delete dentro do adapter
-        val id = intent.extras?.getString("id")
-
         binding.btClear.setOnClickListener {
-                DB().deleteItensCart()
-            // atualizar tela apos deletar
+            DB().deleteItensCart()
+            cart_list.removeAll(cart_list)
         }
     }
 
     override fun onCreateOptionsMenu(menu: Menu): Boolean {
-        menuInflater.inflate(R.menu.menu, menu)
+        menuInflater.inflate(R.menu.menu_logout, menu)
         return true
     }
 

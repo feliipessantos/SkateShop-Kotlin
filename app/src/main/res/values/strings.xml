@@ -12,4 +12,5 @@
     <string name="product_image">Product Image</string>
     <string name="description_img_product">Image product</string>
     <string name="finish_cart">Finish</string>
+    <string name="clear_all">Clear all</string>
 </resources>
