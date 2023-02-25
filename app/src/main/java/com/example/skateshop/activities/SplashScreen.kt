@@ -1,6 +1,7 @@
 package com.example.skateshop.activities
 
 import android.content.Intent
+import android.graphics.Color
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.os.Handler
@@ -20,5 +21,6 @@ class SplashScreen : AppCompatActivity() {
         }, 1000)
 
         supportActionBar!!.hide()
+        window.statusBarColor = Color.parseColor("#DEE2D6")
     }
 }

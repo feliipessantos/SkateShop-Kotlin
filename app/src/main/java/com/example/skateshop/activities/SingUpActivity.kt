@@ -23,6 +23,8 @@ class SingUpActivity : AppCompatActivity() {
         setContentView(binding.root)
 
         supportActionBar!!.hide()
+        window.statusBarColor = Color.parseColor("#DEE2D6")
+
         val db = DB()
 
         binding.btSingUp.setOnClickListener {

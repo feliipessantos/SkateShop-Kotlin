@@ -28,8 +28,6 @@ class ProductsActivity : AppCompatActivity() {
         binding = ActivityProductsBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
-        window.statusBarColor = Color.parseColor("#00204B")
-
         val recycler_products = binding.recyclerProducts
 
         recycler_products.layoutManager = GridLayoutManager(this, 2)
@@ -43,12 +41,12 @@ class ProductsActivity : AppCompatActivity() {
     }
 
     override fun onCreateOptionsMenu(menu: Menu): Boolean {
-        menuInflater.inflate(R.menu.menu, menu)
+        menuInflater.inflate(R.menu.menu_cart_logout, menu)
         return true
     }
 
     override fun onOptionsItemSelected(item: MenuItem): Boolean = when(item.itemId) {
-        R.id.cart -> {
+          R.id.cart -> {
             val intent = Intent(this, CartActivity::class.java)
             startActivity(intent)
             true
