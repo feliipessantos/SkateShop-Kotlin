@@ -1,7 +1,6 @@
 package com.example.skateshop.DB
 
 import android.annotation.SuppressLint
-import android.util.Log
 import com.example.skateshop.adapter.CartAdapter
 import com.example.skateshop.adapter.ProductAdapter
 import com.example.skateshop.model.Product
@@ -13,6 +12,8 @@ import com.google.firebase.firestore.FirebaseFirestore
 class DB {
     val userId = FirebaseAuth.getInstance().currentUser!!.uid
     val db = FirebaseFirestore.getInstance()
+    val productCollection: CollectionReference =
+        db.collection("Users").document(userId).collection("purchased_product")
 
     fun saveUserData(user_name: String) {
         val users = hashMapOf(
@@ -24,7 +25,7 @@ class DB {
 
     @SuppressLint("NotifyDataSetChanged")
     fun getProductList(product_list: MutableList<Product>, productAdapter: ProductAdapter){
-        FirebaseFirestore.getInstance().collection("Products").get()
+        db.collection("Products").get()
             .addOnCompleteListener { task ->
                 if(task.isSuccessful){
                     for(document in task.result!!){
@@ -35,23 +36,23 @@ class DB {
             }
     }
 
-    fun addToCart(img: String, name: String, price: String){
+    fun addToCart(id: String, img: String, name: String, price: String) {
         val purchased_product = hashMapOf(
+            "id" to id,
             "img" to img,
             "name" to name,
             "price" to price
         )
-        val collectionReference: CollectionReference = db.collection("Users").document(userId).collection("purchased_product")
-        collectionReference.add(purchased_product)
+        productCollection.add(purchased_product)
     }
 
     @SuppressLint("NotifyDataSetChanged")
     fun getPurchesedProducts(cart_list: MutableList<Product>, cartAdapter: CartAdapter){
-        FirebaseFirestore.getInstance().collection("Users").document(userId)
+        db.collection("Users").document(userId)
             .collection("purchased_product").get()
             .addOnCompleteListener { it ->
-                if(it.isSuccessful){
-                    for (document in it.result!!){
+                if (it.isSuccessful) {
+                    for (document in it.result!!) {
                         cart_list.add(document.toObject(Product::class.java))
                         cartAdapter.notifyDataSetChanged()
                     }
@@ -59,9 +60,13 @@ class DB {
             }
     }
 
-    fun deleteItensCart(){
-        val productId = FirebaseFirestore.getInstance().collection("Users").document(userId)
-            .collection("purchased_product").document("LxBz7q3MHO7OlDyK3iI5")
-        productId.delete()
+    fun deleteItensCart() {
+        productCollection.get().addOnSuccessListener { result ->
+            for (document in result) {
+                val id = document.id
+                productCollection.document(id).delete()
+            }
+        }
     }
 }
+

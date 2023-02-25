@@ -35,9 +35,16 @@ class CartActivity : AppCompatActivity() {
         recycler_cart.adapter = cartAdapter
 
         DB().getPurchesedProducts(cart_list, cartAdapter)
-        binding.btClear.setOnClickListener {
-            DB().deleteItensCart()
 
+        //captura id dentro do produto
+        // precisa colocar botão e rastrar clice nesse id
+        // deletar aquele que foi clicado
+        // talvez colocar funcao delete dentro do adapter
+        val id = intent.extras?.getString("id")
+
+        binding.btClear.setOnClickListener {
+                DB().deleteItensCart()
+            // atualizar tela apos deletar
         }
     }
 
@@ -62,4 +69,5 @@ class CartActivity : AppCompatActivity() {
         startActivity(intent)
         finish()
     }
+
 }

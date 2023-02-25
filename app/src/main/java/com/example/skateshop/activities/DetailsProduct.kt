@@ -11,6 +11,7 @@ import com.example.skateshop.DB.DB
 import com.example.skateshop.R
 import com.example.skateshop.databinding.ActivityDetailsProductBinding
 import com.google.firebase.auth.FirebaseAuth
+import java.util.*
 
 class DetailsProduct : AppCompatActivity() {
     private lateinit var binding: ActivityDetailsProductBinding
@@ -25,6 +26,8 @@ class DetailsProduct : AppCompatActivity() {
         val img = intent.extras?.getString("img")
         val name = intent.extras?.getString("name")
         val price = intent.extras?.getString("price")
+        //gera id unico cada produto comprado
+        val id = UUID.randomUUID().toString()
 
         Glide.with(this).load(img).into(binding.detailsImg)
         binding.detailsName.text = name
@@ -32,15 +35,16 @@ class DetailsProduct : AppCompatActivity() {
 
         binding.btBuy.setOnClickListener {
             if (img != null && name != null && price != null) {
-                    DB().addToCart(img, name, price)
+                DB().addToCart(id, img, name, price)
             }
             val intent = Intent(this, CartActivity::class.java)
+            // passa id gerado para o carrinho
+            intent.putExtra("id", id)
             intent.putExtra("img", img)
             intent.putExtra("name", name)
             intent.putExtra("price", price)
             startActivity(intent)
         }
-
     }
 
     override fun onCreateOptionsMenu(menu: Menu): Boolean {
