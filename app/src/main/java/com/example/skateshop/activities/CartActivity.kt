@@ -33,8 +33,16 @@ class CartActivity : AppCompatActivity() {
         DB().getPurchesedProducts(cart_list, cartAdapter)
 
         binding.btClear.setOnClickListener {
-            DB().deleteItensCart()
+            DB().deleteItensCart(cartAdapter)
             cart_list.removeAll(cart_list)
+        }
+
+        binding.btFinish.setOnClickListener {
+            val intent = Intent(this, Checkout::class.java)
+            startActivity(intent)
+            DB().deleteItensCart(cartAdapter)
+            cart_list.removeAll(cart_list)
+            finish()
         }
     }
 

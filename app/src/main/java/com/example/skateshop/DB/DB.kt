@@ -1,6 +1,9 @@
 package com.example.skateshop.DB
 
 import android.annotation.SuppressLint
+import android.content.ContentValues.TAG
+import android.util.Log
+import android.widget.TextView
 import com.example.skateshop.adapter.CartAdapter
 import com.example.skateshop.adapter.ProductAdapter
 import com.example.skateshop.model.Product
@@ -24,11 +27,11 @@ class DB {
     }
 
     @SuppressLint("NotifyDataSetChanged")
-    fun getProductList(product_list: MutableList<Product>, productAdapter: ProductAdapter){
+    fun getProductList(product_list: MutableList<Product>, productAdapter: ProductAdapter) {
         db.collection("Products").get()
             .addOnCompleteListener { task ->
-                if(task.isSuccessful){
-                    for(document in task.result!!){
+                if (task.isSuccessful) {
+                    for (document in task.result!!) {
                         product_list.add(document.toObject(Product::class.java))
                         productAdapter.notifyDataSetChanged()
                     }
@@ -47,7 +50,7 @@ class DB {
     }
 
     @SuppressLint("NotifyDataSetChanged")
-    fun getPurchesedProducts(cart_list: MutableList<Product>, cartAdapter: CartAdapter){
+    fun getPurchesedProducts(cart_list: MutableList<Product>, cartAdapter: CartAdapter) {
         db.collection("Users").document(userId)
             .collection("purchased_product").get()
             .addOnCompleteListener { it ->
@@ -60,13 +63,24 @@ class DB {
             }
     }
 
-    fun deleteItensCart() {
+    @SuppressLint("NotifyDataSetChanged")
+    fun deleteItensCart(cartAdapter: CartAdapter) {
         productCollection.get().addOnSuccessListener { result ->
             for (document in result) {
                 val id = document.id
                 productCollection.document(id).delete()
+                cartAdapter.notifyDataSetChanged()
             }
         }
+    }
+
+    fun getUserName(user_name: TextView) {
+        db.collection("Users").document(userId)
+            .addSnapshotListener { document, error ->
+                if (document != null) {
+                    user_name.text = "Hey ${document.getString("name").toString() }, please select a shipping address"
+                }
+            }
     }
 }
 

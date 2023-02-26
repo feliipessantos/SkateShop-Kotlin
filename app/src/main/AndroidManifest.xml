@@ -15,6 +15,14 @@
         android:theme="@style/Theme.SkateShop"
         tools:targetApi="31">
         <activity
+            android:name=".activities.Checkout"
+            android:exported="false" />
+
+        <meta-data
+            android:name="com.google.android.gms.wallet.api.enabled"
+            android:value="true" />
+
+        <activity
             android:name=".activities.DetailsProduct"
             android:exported="false">
             <meta-data
