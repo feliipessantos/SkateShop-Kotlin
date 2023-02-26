@@ -1,6 +1,7 @@
 package com.example.skateshop.activities
 
 import android.content.Intent
+import android.graphics.Color
 import android.os.Bundle
 import android.view.Menu
 import android.view.MenuItem
@@ -11,6 +12,7 @@ import com.example.skateshop.R
 import com.example.skateshop.adapter.CartAdapter
 import com.example.skateshop.databinding.ActivityCartBinding
 import com.example.skateshop.model.Product
+import com.google.android.material.snackbar.Snackbar
 import com.google.firebase.auth.FirebaseAuth
 
 class CartActivity : AppCompatActivity() {
@@ -33,16 +35,32 @@ class CartActivity : AppCompatActivity() {
         DB().getPurchesedProducts(cart_list, cartAdapter)
 
         binding.btClear.setOnClickListener {
-            DB().deleteItensCart(cartAdapter)
-            cart_list.removeAll(cart_list)
+            if (cart_list.isEmpty()) {
+                val snackbar =
+                    Snackbar.make(it, "Your cart is already empty.", Snackbar.LENGTH_LONG)
+                snackbar.setBackgroundTint(Color.RED)
+                snackbar.setActionTextColor(Color.WHITE)
+                snackbar.show()
+            } else {
+                DB().deleteItensCart(cartAdapter)
+                cart_list.removeAll(cart_list)
+            }
         }
 
         binding.btFinish.setOnClickListener {
-            val intent = Intent(this, Checkout::class.java)
-            startActivity(intent)
-            DB().deleteItensCart(cartAdapter)
-            cart_list.removeAll(cart_list)
-            finish()
+            if (cart_list.isEmpty()) {
+                val snackbar =
+                    Snackbar.make(it, "Your cart is empty.", Snackbar.LENGTH_LONG)
+                snackbar.setBackgroundTint(Color.RED)
+                snackbar.setActionTextColor(Color.WHITE)
+                snackbar.show()
+            } else {
+                val intent = Intent(this, Checkout::class.java)
+                startActivity(intent)
+                DB().deleteItensCart(cartAdapter)
+                cart_list.removeAll(cart_list)
+                finish()
+            }
         }
     }
 

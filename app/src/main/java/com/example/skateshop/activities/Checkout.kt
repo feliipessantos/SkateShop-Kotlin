@@ -2,20 +2,20 @@ package com.example.skateshop.activities
 
 import android.content.Intent
 import android.graphics.Color
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.os.Handler
 import android.os.Looper
-import androidx.core.os.postDelayed
+import androidx.appcompat.app.AppCompatActivity
 import com.example.skateshop.API.ZipCodeAPI
 import com.example.skateshop.DB.DB
 import com.example.skateshop.Dialog.DialogDoneShopping
-import com.example.skateshop.R
-import com.example.skateshop.databinding.ActivityCartBinding
 import com.example.skateshop.databinding.ActivityCheckoutBinding
 import com.example.skateshop.model.Address
 import com.google.android.material.snackbar.Snackbar
-import retrofit2.*
+import retrofit2.Call
+import retrofit2.Callback
+import retrofit2.Response
+import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
 
 class Checkout : AppCompatActivity() {
@@ -57,13 +57,21 @@ class Checkout : AppCompatActivity() {
                             val city = response.body()?.localidade.toString()
                             val state = response.body()?.uf.toString()
                             setFormularios(address, city, state)
+                        } else {
+                            val snackbar = Snackbar.make(
+                                it,
+                                "Error to find zip code.",
+                                Snackbar.LENGTH_SHORT
+                            )
+                            snackbar.setBackgroundTint(Color.RED)
+                            snackbar.setActionTextColor(Color.WHITE)
+                            snackbar.show()
                         }
                     }
-
                     override fun onFailure(call: Call<Address>, t: Throwable) {
                         val snackbar = Snackbar.make(
                             it,
-                            "Find zip error!",
+                            " Error to find zip code.",
                             Snackbar.LENGTH_SHORT
                         )
                         snackbar.setBackgroundTint(Color.RED)
@@ -80,7 +88,7 @@ class Checkout : AppCompatActivity() {
             val city = binding.editCity.text.toString()
             val state = binding.editState.text.toString()
 
-            if (zip.isEmpty() && address.isEmpty() && city.isEmpty() && state.isEmpty()) {
+            if (zip.isEmpty() || address.isEmpty() || city.isEmpty() || state.isEmpty() || zip.length < 8) {
                 val snackbar = Snackbar.make(
                     it,
                     "Please check your shipping address and try again.",

@@ -1,8 +1,6 @@
 package com.example.skateshop.DB
 
 import android.annotation.SuppressLint
-import android.content.ContentValues.TAG
-import android.util.Log
 import android.widget.TextView
 import com.example.skateshop.adapter.CartAdapter
 import com.example.skateshop.adapter.ProductAdapter
@@ -78,7 +76,15 @@ class DB {
         db.collection("Users").document(userId)
             .addSnapshotListener { document, error ->
                 if (document != null) {
-                    user_name.text = "Hey ${document.getString("name").toString() }, please select a shipping address"
+                    if (document.getString("user_name") == null) {
+                        user_name.text = "Hey ${
+                            document.getString("name").toString()
+                        }, please select a shipping address"
+                    } else {
+                        user_name.text = "Hey ${
+                            document.getString("user_name").toString()
+                        }, please select a shipping address"
+                    }
                 }
             }
     }

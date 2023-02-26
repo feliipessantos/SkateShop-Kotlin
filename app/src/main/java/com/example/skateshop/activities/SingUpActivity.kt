@@ -5,6 +5,8 @@ import android.graphics.Color
 import android.os.Bundle
 import android.os.Handler
 import android.os.Looper
+import android.view.View
+import android.view.inputmethod.InputMethodManager
 import androidx.appcompat.app.AppCompatActivity
 import com.example.skateshop.DB.DB
 import com.example.skateshop.databinding.ActivitySingUpBinding
@@ -25,17 +27,23 @@ class SingUpActivity : AppCompatActivity() {
         supportActionBar!!.hide()
         window.statusBarColor = Color.parseColor("#DEE2D6")
 
-        val db = DB()
-
         binding.btSingUp.setOnClickListener {
             val name = binding.editName.text.toString()
             val email = binding.editEmail.text.toString()
             val password = binding.editPass.text.toString()
+            val view: View? = this.currentFocus
 
-            if (name.isEmpty() || email.isEmpty() || password.isEmpty()) {
-                val snackbar = Snackbar.make(it,
+            if (name.isEmpty() || email.isEmpty() || password.isEmpty() && view != null) {
+                val inputMethodManager =
+                    getSystemService(INPUT_METHOD_SERVICE) as InputMethodManager
+                if (view != null) {
+                    inputMethodManager.hideSoftInputFromWindow(view.windowToken, 0)
+                }
+                val snackbar = Snackbar.make(
+                    it,
                     "Please check your data and try again.",
-                    Snackbar.LENGTH_SHORT)
+                    Snackbar.LENGTH_SHORT
+                )
                 snackbar.setBackgroundTint(Color.RED)
                 snackbar.setActionTextColor(Color.WHITE)
                 snackbar.show()
@@ -43,7 +51,7 @@ class SingUpActivity : AppCompatActivity() {
                 FirebaseAuth.getInstance().createUserWithEmailAndPassword(email, password)
                     .addOnCompleteListener { task ->
                         if (task.isSuccessful) {
-                            db.saveUserData(name)
+                            DB().saveUserData(name)
                             val snackbar =
                                 Snackbar.make(it, "Register Successfull", Snackbar.LENGTH_SHORT)
                             snackbar.setBackgroundTint(Color.GREEN)
@@ -62,6 +70,11 @@ class SingUpActivity : AppCompatActivity() {
                             snackbar.show()
                         }
                     }.addOnFailureListener { errorSingUp ->
+                        val inputMethodManager =
+                            getSystemService(INPUT_METHOD_SERVICE) as InputMethodManager
+                        if (view != null) {
+                            inputMethodManager.hideSoftInputFromWindow(view.windowToken, 0)
+                        }
                         val erroMsg = when(errorSingUp){
                             is FirebaseAuthWeakPasswordException -> "Your password must have min 6 characters"
                             is FirebaseAuthUserCollisionException -> "This account is already exist"
