@@ -10,15 +10,16 @@
 
 ### About 
 
-<p align="justify">This project uses <a href="https://firebase.google.com">(Firebase)</a> for the authentication and database.
+<p align="justify">This project uses <a href="https://firebase.google.com">Firebase</a> for the authentication and database.
 When starting the application, the user can log in with a registered email or with his Google account.
 In case need, the user is able to register with a Name, Email, and Password.
 Snackbars are launch case the user fill the form in wrong way.
-In the Main View, the products are disponibilize by a Recycler View, and your data are get to Firestore Database.
+In the Main View, the products are disponibilize by a Recycler View, the images are loading by <a href="https://github.com/bumptech/glide">Glide</a>,
+and your data are get to Firestore Database.
 When adding products to the shopping cart, a collection of products that the user choose to buy is created in database.
 In the shopping cart, it is possible to delete the products, which deletes them from the database, or checkout,
 which will take the user to the shipping address filling screen. 
-On this has an API  <a href="https://viacep.com.br/">(Via CEP)</a> call to fill in the address using zip code and complete the purchases.
+On this has an API  <a href="https://viacep.com.br/">Via CEP</a> call to fill in the address using zip code and complete the purchases.
 
 
 </p>
@@ -39,6 +40,7 @@ On this has an API  <a href="https://viacep.com.br/">(Via CEP)</a> call to fill 
 which can maximize the conversion of logins and sign-ups in your app;
 - [Firabase Firestore](https://firebase.google.com/docs/firestore) - Cloud Firestore is a flexible, scalable database for mobile, web, 
 and server-focused development across Firebase and the Google Cloud;
+- [Glide](https://github.com/bumptech/glide) - Glide is a fast and efficient open source media management and image loading framework for Android that wraps media decoding, memory and disk caching, and resource pooling into a simple and easy to use interface;
 - [Via CEP](https://viacep.com.br/) - A free high-performance webservice to query Brazil's Postal Address Codes (CEPs).
   
   <div align="center">
