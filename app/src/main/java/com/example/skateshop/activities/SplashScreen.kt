@@ -1,26 +1,30 @@
 package com.example.skateshop.activities
 
 import android.content.Intent
-import android.graphics.Color
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import android.os.Handler
-import android.os.Looper
-import com.example.skateshop.R
+import androidx.appcompat.app.AppCompatActivity
+import com.example.skateshop.databinding.ActivitySplashScreenBinding
+import com.ncorti.slidetoact.SlideToActView
+
 
 class SplashScreen : AppCompatActivity() {
+    private lateinit var binding: ActivitySplashScreenBinding
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_splash_screen)
+        binding = ActivitySplashScreenBinding.inflate(layoutInflater)
+        setContentView(binding.root)
 
-        val handler = Handler(Looper.getMainLooper())
-        handler.postDelayed({
-            val intent = Intent(this, MainActivity::class.java)
-            startActivity(intent)
-            finish()
-        }, 1000)
+        val slide = binding.slideBt
+        val intent = Intent(this, MainActivity::class.java)
 
+
+        slide.onSlideCompleteListener = object : SlideToActView.OnSlideCompleteListener {
+            override fun onSlideComplete(view: SlideToActView) {
+                startActivity(intent)
+                finish()
+            }
+        }
         supportActionBar!!.hide()
-        window.statusBarColor = Color.parseColor("#DEE2D6")
+
     }
 }
