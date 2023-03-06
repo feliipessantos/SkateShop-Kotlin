@@ -21,4 +21,6 @@
     <string name="done">done</string>
     <string name="thank_for_order">Thank you for your order !!</string>
     <string name="logo_image">logo image</string>
+    <string name="subtitle_splashscreen">Search your favorite skate.</string>
+    <string name="img_splashscreen">img splashscreen</string>
 </resources>

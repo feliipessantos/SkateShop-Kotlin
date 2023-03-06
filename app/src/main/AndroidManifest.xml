@@ -16,7 +16,7 @@
         android:theme="@style/Theme.SkateShop"
         tools:targetApi="31">
         <activity
-            android:name=".activities.Checkout"
+            android:name="com.feliipessantos.skateshop.views.CheckoutScreen"
             android:exported="false" />
 
         <meta-data
@@ -24,35 +24,35 @@
             android:value="true" />
 
         <activity
-            android:name=".activities.DetailsProduct"
+            android:name="com.feliipessantos.skateshop.views.DetailsProductScreen"
             android:exported="false">
             <meta-data
                 android:name="android.app.lib_name"
                 android:value="" />
         </activity>
         <activity
-            android:name=".activities.CartActivity"
+            android:name="com.feliipessantos.skateshop.views.CartScreen"
             android:exported="false">
             <meta-data
                 android:name="android.app.lib_name"
                 android:value="" />
         </activity>
         <activity
-            android:name=".activities.SingUpActivity"
+            android:name="com.feliipessantos.skateshop.views.SingUpScreen"
             android:exported="false">
             <meta-data
                 android:name="android.app.lib_name"
                 android:value="" />
         </activity>
         <activity
-            android:name=".activities.ProductsActivity"
+            android:name="com.feliipessantos.skateshop.views.ProductsScreen"
             android:exported="false">
             <meta-data
                 android:name="android.app.lib_name"
                 android:value="" />
         </activity>
         <activity
-            android:name=".activities.SplashScreen"
+            android:name="com.feliipessantos.skateshop.views.SplashScreen"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -65,7 +65,7 @@
                 android:value="" />
         </activity>
         <activity
-            android:name=".activities.MainActivity"
+            android:name="com.feliipessantos.skateshop.views.LoginScreen"
             android:exported="false">
             <meta-data
                 android:name="android.app.lib_name"
