@@ -65,4 +65,7 @@ dependencies {
 
     //Slide button
     implementation "com.ncorti:slidetoact:0.10.0"
+
+    //lotie
+    implementation 'com.airbnb.android:lottie:6.0.0'
 }

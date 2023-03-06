@@ -2,6 +2,8 @@ package com.example.skateshop.Dialog
 
 import android.app.Activity
 import android.app.AlertDialog
+import android.graphics.Color
+import android.graphics.drawable.ColorDrawable
 import com.example.skateshop.R
 
 class DialogLoading(private val activity: Activity) {
@@ -12,6 +14,7 @@ class DialogLoading(private val activity: Activity) {
         builder.setView(layoutInflater.inflate(R.layout.dialog_loading, null))
         builder.setCancelable(false)
         dialog = builder.create()
+        dialog.window?.setBackgroundDrawable(ColorDrawable(Color.TRANSPARENT))
         dialog.show()
     }
     fun DialogLoadingFinish(){
