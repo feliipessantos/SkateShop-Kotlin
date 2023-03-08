@@ -6,7 +6,7 @@
     android:background="@color/bg_gray"
     android:gravity="center"
     android:orientation="vertical"
-    tools:context="com.feliipessantos.skateshop.views.DetailsProductScreen">
+    tools:context="com.feliipessantos.skateshop.ui.views.detailsProduct.DetailsProductView">
 
     <androidx.cardview.widget.CardView
         android:layout_width="320dp"

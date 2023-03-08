@@ -7,6 +7,7 @@
 
     <application
         android:allowBackup="true"
+        android:name="com.feliipessantos.skateshop.domain.di.MyApp"
         android:dataExtractionRules="@xml/data_extraction_rules"
         android:fullBackupContent="@xml/backup_rules"
         android:icon="@mipmap/ic_launcher"
@@ -16,7 +17,7 @@
         android:theme="@style/Theme.SkateShop"
         tools:targetApi="31">
         <activity
-            android:name="com.feliipessantos.skateshop.views.CheckoutScreen"
+            android:name="com.feliipessantos.skateshop.ui.views.checkout.CheckoutView"
             android:exported="false" />
 
         <meta-data
@@ -24,35 +25,35 @@
             android:value="true" />
 
         <activity
-            android:name="com.feliipessantos.skateshop.views.DetailsProductScreen"
+            android:name="com.feliipessantos.skateshop.ui.views.detailsProduct.DetailsProductView"
             android:exported="false">
             <meta-data
                 android:name="android.app.lib_name"
                 android:value="" />
         </activity>
         <activity
-            android:name="com.feliipessantos.skateshop.views.CartScreen"
+            android:name="com.feliipessantos.skateshop.ui.views.cart.CartView"
             android:exported="false">
             <meta-data
                 android:name="android.app.lib_name"
                 android:value="" />
         </activity>
         <activity
-            android:name="com.feliipessantos.skateshop.views.SingUpScreen"
+            android:name="com.feliipessantos.skateshop.ui.views.signUp.SignUpView"
             android:exported="false">
             <meta-data
                 android:name="android.app.lib_name"
                 android:value="" />
         </activity>
         <activity
-            android:name="com.feliipessantos.skateshop.views.ProductsScreen"
+            android:name="com.feliipessantos.skateshop.ui.views.products.ProductsView"
             android:exported="false">
             <meta-data
                 android:name="android.app.lib_name"
                 android:value="" />
         </activity>
         <activity
-            android:name="com.feliipessantos.skateshop.views.SplashScreen"
+            android:name="com.feliipessantos.skateshop.ui.views.splashScreen.SplashScreen"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -65,7 +66,7 @@
                 android:value="" />
         </activity>
         <activity
-            android:name="com.feliipessantos.skateshop.views.LoginScreen"
+            android:name="com.feliipessantos.skateshop.ui.views.login.LoginView"
             android:exported="false">
             <meta-data
                 android:name="android.app.lib_name"
