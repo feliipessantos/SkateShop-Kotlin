@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/navigation"
+    app:startDestination="@id/splashScreenFragment">
+
+    <fragment
+        android:id="@+id/splashScreenFragment"
+        android:name="com.feliipessantos.skateshop.ui.views.splashScreen.SplashScreenFragment"
+        android:label="SplashScreenFragment" >
+        <action
+            android:id="@+id/action_splashScreenFragment_to_productsFragment"
+            app:destination="@id/productsFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/productsFragment"
+        android:name="com.feliipessantos.skateshop.ui.views.products.ProductsFragment"
+        android:label="fragment_products"
+        tools:layout="@layout/fragment_products" >
+        <action
+            android:id="@+id/action_productsFragment_to_detailsProductFragment"
+            app:destination="@id/detailsProductFragment"
+            app:enterAnim="@anim/nav_default_pop_enter_anim"
+            app:exitAnim="@anim/nav_default_pop_exit_anim" />
+    </fragment>
+    <fragment
+        android:id="@+id/detailsProductFragment"
+        android:name="com.feliipessantos.skateshop.ui.views.detailsProduct.DetailsProductFragment"
+        android:label="DetailsProductFragment" >
+        <argument android:name="name" />
+        <argument android:name="price" />
+        <argument android:name="img" />
+        <action
+            android:id="@+id/action_detailsProductFragment_to_cartFragment"
+            app:destination="@id/cartFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/cartFragment"
+        android:name="com.feliipessantos.skateshop.ui.views.cart.CartFragment"
+        android:label="fragment_cart"
+        tools:layout="@layout/fragment_cart" >
+        <argument android:name="img" />
+        <argument android:name="name" />
+        <argument android:name="price" />
+        <action
+            android:id="@+id/action_cartFragment_to_checkoutFragment"
+            app:destination="@id/checkoutFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/checkoutFragment"
+        android:name="com.feliipessantos.skateshop.ui.views.checkout.CheckoutFragment"
+        android:label="fragment_checkout"
+        tools:layout="@layout/fragment_checkout" >
+        <action
+            android:id="@+id/action_checkoutFragment_to_productsFragment"
+            app:destination="@id/productsFragment" />
+    </fragment>
+</navigation>

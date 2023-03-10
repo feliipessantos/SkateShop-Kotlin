@@ -23,4 +23,6 @@
     <string name="logo_image">logo image</string>
     <string name="subtitle_splashscreen">Search your favorite skate.</string>
     <string name="img_splashscreen">img splashscreen</string>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
 </resources>

@@ -8,7 +8,6 @@ import androidx.activity.result.contract.ActivityResultContracts
 import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.Observer
 import com.example.skateshop.databinding.LoginScreenBinding
-import com.feliipessantos.skateshop.ui.views.products.ProductsView
 import com.feliipessantos.skateshop.ui.views.signUp.SignUpView
 import com.google.android.gms.auth.api.signin.GoogleSignIn
 import com.google.android.gms.auth.api.signin.GoogleSignInClient
@@ -126,9 +125,7 @@ class LoginView : AppCompatActivity() {
     }
 
     private fun navigateToProductsActivity() {
-        val intent = Intent(this, ProductsView::class.java)
-        startActivity(intent)
-        finish()
+
     }
 
     override fun onStart() {

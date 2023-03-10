@@ -19,8 +19,7 @@
             android:layout_width="120dp"
             android:layout_height="120dp"
             android:layout_gravity="center"
-            android:scaleType="centerCrop"
-            android:background="@color/blue"
+            android:scaleType="centerInside"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
             android:contentDescription="@string/description_img_product" />
