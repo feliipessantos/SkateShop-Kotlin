@@ -3,46 +3,52 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/navigation"
-    app:startDestination="@id/splashScreenFragment">
+    app:startDestination="@id/productsFragment">
 
-    <fragment
-        android:id="@+id/splashScreenFragment"
-        android:name="com.feliipessantos.skateshop.ui.views.splashScreen.SplashScreenFragment"
-        android:label="SplashScreenFragment" >
-        <action
-            android:id="@+id/action_splashScreenFragment_to_productsFragment"
-            app:destination="@id/productsFragment" />
-    </fragment>
     <fragment
         android:id="@+id/productsFragment"
         android:name="com.feliipessantos.skateshop.ui.views.products.ProductsFragment"
-        android:label="fragment_products"
-        tools:layout="@layout/fragment_products" >
+        android:label=""
+        tools:layout="@layout/fragment_products">
         <action
             android:id="@+id/action_productsFragment_to_detailsProductFragment"
-            app:destination="@id/detailsProductFragment"
-            app:enterAnim="@anim/nav_default_pop_enter_anim"
-            app:exitAnim="@anim/nav_default_pop_exit_anim" />
+            app:destination="@id/detailsProductFragment" />
+        <action
+            android:id="@+id/action_productsFragment_to_cartFragment"
+            app:destination="@id/cartFragment" />
+        <action
+            android:id="@+id/action_productsFragment_to_searchFragment"
+            app:destination="@id/searchFragment" />
+        <action
+            android:id="@+id/action_productsFragment_to_loginFragment"
+            app:destination="@id/loginFragment" />
     </fragment>
     <fragment
         android:id="@+id/detailsProductFragment"
         android:name="com.feliipessantos.skateshop.ui.views.detailsProduct.DetailsProductFragment"
-        android:label="DetailsProductFragment" >
+        android:label=""
+        tools:layout="@layout/fragment_details_product">
         <argument android:name="name" />
         <argument android:name="price" />
         <argument android:name="img" />
         <action
             android:id="@+id/action_detailsProductFragment_to_cartFragment"
             app:destination="@id/cartFragment" />
+        <action
+            android:id="@+id/action_detailsProductFragment_to_productsFragment"
+            app:destination="@id/productsFragment" />
     </fragment>
     <fragment
         android:id="@+id/cartFragment"
         android:name="com.feliipessantos.skateshop.ui.views.cart.CartFragment"
-        android:label="fragment_cart"
-        tools:layout="@layout/fragment_cart" >
+        android:label=""
+        tools:layout="@layout/fragment_cart">
         <argument android:name="img" />
         <argument android:name="name" />
         <argument android:name="price" />
+        <action
+            android:id="@+id/action_cartFragment_to_productsFragment"
+            app:destination="@id/productsFragment" />
         <action
             android:id="@+id/action_cartFragment_to_checkoutFragment"
             app:destination="@id/checkoutFragment" />
@@ -50,10 +56,58 @@
     <fragment
         android:id="@+id/checkoutFragment"
         android:name="com.feliipessantos.skateshop.ui.views.checkout.CheckoutFragment"
-        android:label="fragment_checkout"
-        tools:layout="@layout/fragment_checkout" >
+        android:label=""
+        tools:layout="@layout/fragment_checkout">
         <action
             android:id="@+id/action_checkoutFragment_to_productsFragment"
             app:destination="@id/productsFragment" />
+        <action
+            android:id="@+id/action_checkoutFragment_to_cartFragment"
+            app:destination="@id/cartFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/searchFragment"
+        android:name="com.feliipessantos.skateshop.ui.views.search.SearchFragment"
+        android:label=""
+        tools:layout="@layout/fragment_search">
+        <action
+            android:id="@+id/action_searchFragment_to_productsFragment"
+            app:destination="@id/productsFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/loginFragment"
+        android:name="com.feliipessantos.skateshop.ui.views.login.LoginFragment"
+        android:label="">
+        <action
+            android:id="@+id/action_loginFragment_to_productsFragment"
+            app:destination="@id/productsFragment" />
+        <action
+            android:id="@+id/action_loginFragment_to_singUpFragment"
+            app:destination="@id/singUpFragment" />
+        <action
+            android:id="@+id/action_loginFragment_to_loggedUserFragment"
+            app:destination="@id/loggedUserFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/singUpFragment"
+        android:name="com.feliipessantos.skateshop.ui.views.signUp.SingUpFragment"
+        android:label="">
+        <action
+            android:id="@+id/action_singUpFragment_to_loginFragment"
+            app:destination="@id/loginFragment" />
+        <action
+            android:id="@+id/action_singUpFragment_to_productsFragment"
+            app:destination="@id/productsFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/loggedUserFragment"
+        android:name="com.feliipessantos.skateshop.ui.views.login.LoggedUserFragment"
+        tools:layout="@layout/fragment_logged_user">
+        <action
+            android:id="@+id/action_loggedUserFragment_to_productsFragment"
+            app:destination="@id/productsFragment" />
+        <action
+            android:id="@+id/action_loggedUserFragment_to_loginFragment"
+            app:destination="@id/loginFragment" />
     </fragment>
 </navigation>

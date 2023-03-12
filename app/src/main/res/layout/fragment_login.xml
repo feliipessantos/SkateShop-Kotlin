@@ -11,42 +11,18 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent">
 
-        <ImageView
-            android:id="@+id/logo"
-            android:layout_width="150dp"
-            android:layout_height="150dp"
-            android:layout_margin="20dp"
-            android:src="@drawable/logo"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
-            android:contentDescription="@string/logo_image" />
-
-        <TextView
-            android:id="@+id/title_singup"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="10dp"
-            android:text="@string/title"
-            android:textSize="30sp"
-            android:textStyle="bold"
-            android:textColor="@color/blue"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/logo" />
-
         <LinearLayout
             android:id="@+id/container_form"
             android:layout_width="match_parent"
             android:layout_height="250dp"
-            android:layout_marginTop="10dp"
+            android:layout_marginTop="120dp"
             android:layout_marginHorizontal="20dp"
             android:background="@drawable/container_card_form"
             android:orientation="vertical"
             android:padding="15dp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/title_singup">
+            app:layout_constraintTop_toTopOf="parent">
 
 
             <com.google.android.material.textfield.TextInputLayout

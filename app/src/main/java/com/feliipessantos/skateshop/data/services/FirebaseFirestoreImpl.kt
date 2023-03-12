@@ -1,17 +1,20 @@
 package com.feliipessantos.skateshop.data.services
 
+import android.util.Log
+import androidx.core.content.ContentProviderCompat.requireContext
 import com.feliipessantos.skateshop.data.listeners.CartListener
 import com.feliipessantos.skateshop.data.listeners.GetCartProductsListener
 import com.feliipessantos.skateshop.data.listeners.ProductListListener
+import com.feliipessantos.skateshop.data.listeners.UserNameListener
 import com.feliipessantos.skateshop.domain.model.Product
+import com.google.android.gms.auth.api.signin.GoogleSignIn
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.firestore.CollectionReference
+import com.google.firebase.firestore.DocumentReference
 import com.google.firebase.firestore.FirebaseFirestore
 
 class FirebaseFirestoreImpl {
     val db = FirebaseFirestore.getInstance()
-
-
     fun getProductList(listener: ProductListListener) {
         val productList: MutableList<Product> = mutableListOf()
 
@@ -69,6 +72,30 @@ class FirebaseFirestoreImpl {
                 listener.getCartProductsLisntener(cartList)
             }
         }
+    }
+
+    fun getUserName(listener: UserNameListener) {
+        val userId = FirebaseAuth.getInstance().currentUser!!.uid
+        val productCollection: DocumentReference =
+            db.collection("Users").document(userId)
+
+        productCollection.addSnapshotListener { document, _ ->
+            if (document != null) {
+                listener.onSuccess(document.getString("name").toString())
+            }
+
+        }
+    }
+
+    fun saveNameUser(name: String) {
+        val userId = FirebaseAuth.getInstance().currentUser!!.uid
+        val users = hashMapOf(
+            "name" to name
+        )
+        val documentReference: DocumentReference = db.collection("Users").document(userId)
+        documentReference.set(users)
+
+
     }
 
 }

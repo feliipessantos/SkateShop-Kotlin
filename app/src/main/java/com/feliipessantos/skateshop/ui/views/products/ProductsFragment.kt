@@ -9,6 +9,8 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
+import androidx.navigation.fragment.NavHostFragment
+import androidx.navigation.ui.setupWithNavController
 import com.example.skateshop.databinding.FragmentProductsBinding
 import com.feliipessantos.skateshop.ui.views.dialog.DialogLoadingFragment
 import org.koin.androidx.viewmodel.ext.android.viewModel
@@ -28,6 +30,7 @@ class ProductsFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+
 
         handlerDialog()
         observers()

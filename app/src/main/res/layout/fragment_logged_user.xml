@@ -1,0 +1,32 @@
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:background="@color/bg_gray"
+    tools:context="com.feliipessantos.skateshop.ui.views.login.LoggedUserFragment">
+
+    <TextView
+        android:id="@+id/userName"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textColor="@color/blue"
+        android:textStyle="bold"
+        android:layout_gravity="center"
+        android:layout_marginTop="150dp"
+        android:textSize="28sp"
+        android:text="" />
+
+    <Button
+        android:id="@+id/btSingOut"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginHorizontal="40dp"
+        android:text="SING OUT"
+        android:background="@color/blue"
+        android:textColor="@color/white"
+        android:layout_gravity="center"
+        android:layout_marginTop="40dp"
+        android:padding="15dp"/>
+
+</LinearLayout>

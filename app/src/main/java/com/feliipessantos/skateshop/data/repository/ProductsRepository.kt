@@ -3,6 +3,7 @@ package com.feliipessantos.skateshop.data.repository
 import com.feliipessantos.skateshop.data.listeners.CartListener
 import com.feliipessantos.skateshop.data.listeners.GetCartProductsListener
 import com.feliipessantos.skateshop.data.listeners.ProductListListener
+import com.feliipessantos.skateshop.data.listeners.UserNameListener
 import com.feliipessantos.skateshop.data.services.FirebaseFirestoreImpl
 
 class ProductsRepository {
@@ -16,6 +17,8 @@ class ProductsRepository {
     fun getCartProducts(listener: GetCartProductsListener) = db.getCartProducts(listener)
 
     fun deleteItemCart(listener: GetCartProductsListener) = db.deleteItemCart(listener)
+
+    fun getUsername(listener: UserNameListener) = db.getUserName(listener)
 
 
 }

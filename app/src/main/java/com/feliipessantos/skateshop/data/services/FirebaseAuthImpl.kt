@@ -7,11 +7,13 @@ import com.google.firebase.auth.FirebaseAuth
 
 class FirebaseAuthImpl {
     private val auth = FirebaseAuth.getInstance()
+    private val db = FirebaseFirestoreImpl()
 
     fun authUser(email: String, password: String, listener: LoginListener) {
         auth.signInWithEmailAndPassword(email, password).addOnCompleteListener { singIng ->
             if (singIng.isSuccessful) {
                 listener.onSuccess()
+
             }
         }.addOnFailureListener {
             listener.onError("Login error")
@@ -25,10 +27,12 @@ class FirebaseAuthImpl {
         }
     }
 
-    fun registerUser(email: String, password: String, listener: RegisterListener){
+
+    fun registerUser(name: String, email: String, password: String, listener: RegisterListener){
         auth.createUserWithEmailAndPassword(email, password).addOnCompleteListener { register ->
             if (register.isSuccessful){
                 listener.onSuccess()
+                db.saveNameUser(name)
             }
         }.addOnFailureListener {
             listener.onError("Register error")

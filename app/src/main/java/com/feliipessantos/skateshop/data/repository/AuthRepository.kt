@@ -13,8 +13,8 @@ class AuthRepository {
 
     fun getCurrentUser(listener: LoginListener) = auth.getCurrentUser(listener)
 
-    fun registerUser(email: String, password: String, listener: RegisterListener) =
-        auth.registerUser(email, password, listener)
+    fun registerUser(name: String, email: String, password: String, listener: RegisterListener) =
+        auth.registerUser(name, email, password, listener)
 
     fun signOut(listener: SignOutListener) = auth.signOut(listener)
 

@@ -15,9 +15,9 @@ class SignUpViewModel(private val repository: AuthRepository): ViewModel() {
     private val _errorMsg = MutableLiveData<String>()
     val errorMsg: LiveData<String> = _errorMsg
 
-    fun registerUser(email: String, password: String){
+    fun registerUser(name: String, email: String, password: String){
         viewModelScope.launch {
-            repository.registerUser(email, password, object : RegisterListener{
+            repository.registerUser(name, email, password, object : RegisterListener{
                 override fun onSuccess() {
                     _register.postValue(true)
                 }

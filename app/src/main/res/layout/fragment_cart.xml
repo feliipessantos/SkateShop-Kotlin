@@ -4,14 +4,14 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/bg_gray"
-    tools:context="com.feliipessantos.skateshop.ui.views.cart.CartView">
+    android:background="@color/bg_gray">
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/recycler_cart"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+        android:layout_marginTop="70dp"
         android:layout_marginBottom="200dp"/>
 
     <Button
