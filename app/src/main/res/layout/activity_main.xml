@@ -14,8 +14,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:elevation="1dp"
-        android:background="@color/white"
-        android:paddingBottom="10dp">
+        android:background="@color/white">
 
 
         <ImageView
@@ -40,21 +39,32 @@
     <androidx.fragment.app.FragmentContainerView
         android:id="@+id/fragmentContainerView"
         android:name="androidx.navigation.fragment.NavHostFragment"
-        app:defaultNavHost="true"
-        app:navGraph="@navigation/navigation"
         android:layout_width="match_parent"
-        android:layout_height="match_parent" />
+        android:layout_height="0dp"
+        app:defaultNavHost="true"
+        app:layout_constraintBottom_toTopOf="@+id/containerBottomToolbar"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/toolbar"
+        app:navGraph="@navigation/navigation"
+        />
+
+    <LinearLayout
+        android:id="@+id/containerBottomToolbar"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/bg_blue"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent">
 
 
     <com.google.android.material.bottomnavigation.BottomNavigationView
         android:id="@+id/bottomToolbar"
-        app:menu="@menu/main_menu"
         android:layout_width="match_parent"
         android:layout_height="60dp"
         android:backgroundTint="@color/blue"
-        app:layout_constraintBottom_toBottomOf="parent"/>
-
-
-
-
+        android:background="@drawable/container_bottom_toolbar"
+        app:menu="@menu/main_menu" />
+    </LinearLayout>
 </androidx.constraintlayout.widget.ConstraintLayout>

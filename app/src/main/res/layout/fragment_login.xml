@@ -4,7 +4,7 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/bg_gray"
+    android:background="@color/bg_blue"
     android:fillViewport="true">
 
     <androidx.constraintlayout.widget.ConstraintLayout
@@ -75,7 +75,7 @@
                 android:padding="15dp"
                 android:text="@string/bt_singin"
                 android:textAllCaps="false"
-                android:textColor="@color/bg_gray"
+                android:textColor="@color/bg_blue"
                 android:textSize="18sp"
                 android:textStyle="bold" />
 
@@ -107,7 +107,7 @@
             android:layout_marginTop="5dp"
             android:gravity="center"
             android:text="@string/signUp"
-            android:textColor="@color/bg_gray"
+            android:textColor="@color/bg_blue"
             android:textSize="18sp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"

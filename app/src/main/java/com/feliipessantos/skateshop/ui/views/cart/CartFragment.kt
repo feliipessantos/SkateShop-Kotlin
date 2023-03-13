@@ -1,8 +1,12 @@
 package com.feliipessantos.skateshop.ui.views.cart
 
+import android.annotation.SuppressLint
 import android.os.Bundle
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
+import android.view.View.GONE
+import android.view.View.VISIBLE
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
@@ -27,6 +31,7 @@ class CartFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
+        viewModel.getUser()
         observers()
 
         _binding.btClear.setOnClickListener {
@@ -38,19 +43,30 @@ class CartFragment : Fragment() {
         }
     }
 
-    override fun onResume() {
-        super.onResume()
-        viewModel.getCartProducts()
-    }
-
-    private fun observers(){
+    @SuppressLint("NotifyDataSetChanged")
+    private fun observers() {
         viewModel.productList.observe(viewLifecycleOwner, Observer { cartList ->
-            if (cartList != null){
+            if (cartList != null) {
                 val recyclerCart = _binding.recyclerCart
                 recyclerCart.setHasFixedSize(true)
                 cartAdapter = CartAdapter(requireContext(), cartList)
                 recyclerCart.adapter = cartAdapter
                 cartAdapter.notifyDataSetChanged()
+            } else {
+                _binding.recyclerCart.visibility = GONE
+            }
+        })
+
+        viewModel.error.observe(viewLifecycleOwner, Observer { error ->
+            _binding.txtCartEmpty.text = error
+        })
+
+        viewModel.login.observe(viewLifecycleOwner, Observer { login ->
+            if(!login){
+                _binding.txtCartEmpty.visibility = VISIBLE
+                _binding.recyclerCart.visibility = GONE
+            } else {
+                viewModel.getCartProducts()
             }
         })
     }

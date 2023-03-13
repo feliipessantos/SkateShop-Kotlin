@@ -13,7 +13,6 @@ class FirebaseAuthImpl {
         auth.signInWithEmailAndPassword(email, password).addOnCompleteListener { singIng ->
             if (singIng.isSuccessful) {
                 listener.onSuccess()
-
             }
         }.addOnFailureListener {
             listener.onError("Login error")
@@ -24,9 +23,10 @@ class FirebaseAuthImpl {
         val currentUser = auth.currentUser
         if (currentUser != null){
             listener.onSuccess()
+        } else {
+            listener.onError("No user logged")
         }
     }
-
 
     fun registerUser(name: String, email: String, password: String, listener: RegisterListener){
         auth.createUserWithEmailAndPassword(email, password).addOnCompleteListener { register ->

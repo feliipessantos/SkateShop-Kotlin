@@ -4,4 +4,6 @@ import com.feliipessantos.skateshop.domain.model.Product
 
 interface GetCartProductsListener {
     fun getCartProductsLisntener(cartList: MutableList<Product>)
+
+    fun onError(error: String)
 }

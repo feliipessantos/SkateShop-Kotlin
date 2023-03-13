@@ -14,14 +14,14 @@
             android:id="@+id/action_productsFragment_to_detailsProductFragment"
             app:destination="@id/detailsProductFragment" />
         <action
-            android:id="@+id/action_productsFragment_to_cartFragment"
-            app:destination="@id/cartFragment" />
-        <action
             android:id="@+id/action_productsFragment_to_searchFragment"
             app:destination="@id/searchFragment" />
         <action
             android:id="@+id/action_productsFragment_to_loginFragment"
             app:destination="@id/loginFragment" />
+        <action
+            android:id="@+id/action_productsFragment_to_cartFragment"
+            app:destination="@id/cartFragment" />
     </fragment>
     <fragment
         android:id="@+id/detailsProductFragment"

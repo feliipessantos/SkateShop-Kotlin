@@ -2,10 +2,8 @@ package com.feliipessantos.skateshop.data.services
 
 import android.util.Log
 import androidx.core.content.ContentProviderCompat.requireContext
-import com.feliipessantos.skateshop.data.listeners.CartListener
-import com.feliipessantos.skateshop.data.listeners.GetCartProductsListener
-import com.feliipessantos.skateshop.data.listeners.ProductListListener
-import com.feliipessantos.skateshop.data.listeners.UserNameListener
+import com.feliipessantos.skateshop.data.listeners.*
+import com.feliipessantos.skateshop.domain.model.Brands
 import com.feliipessantos.skateshop.domain.model.Product
 import com.google.android.gms.auth.api.signin.GoogleSignIn
 import com.google.firebase.auth.FirebaseAuth
@@ -15,10 +13,10 @@ import com.google.firebase.firestore.FirebaseFirestore
 
 class FirebaseFirestoreImpl {
     val db = FirebaseFirestore.getInstance()
-    fun getProductList(listener: ProductListListener) {
+    fun getProductList(listener: ProductListListener, brand: String) {
         val productList: MutableList<Product> = mutableListOf()
 
-        db.collection("Products").get()
+        db.collection("Products").document("tk3m5ngv4YwfkXAlpCMu").collection(brand).get()
             .addOnCompleteListener { task ->
                 if (task.isSuccessful) {
                     for (document in task.result!!) {
@@ -27,6 +25,21 @@ class FirebaseFirestoreImpl {
                     }
                 }
             }
+    }
+
+    fun getBrandsList(listener: BrandsListListener){
+        val brandsList: MutableList<Brands> = mutableListOf()
+
+        db.collection("Brands").get()
+            .addOnCompleteListener {
+                if (it.isSuccessful){
+                    for (document in it.result!!){
+                        brandsList.add(document.toObject(Brands::class.java))
+                        listener.getBrandsList(brandsList)
+                    }
+                }
+            }
+
     }
 
     fun addToCart(id: String, img: String, name: String, price: String, listener: CartListener) {
@@ -55,7 +68,11 @@ class FirebaseFirestoreImpl {
                         cartList.add(document.toObject(Product::class.java))
                         listener.getCartProductsLisntener(cartList)
                     }
+                } else {
+                    listener.onError("add itens")
                 }
+            }.addOnFailureListener {
+                listener.onError("Add itens into cart!")
             }
     }
 
@@ -71,6 +88,8 @@ class FirebaseFirestoreImpl {
                 productCollection.document(id).delete()
                 listener.getCartProductsLisntener(cartList)
             }
+        }.addOnFailureListener {
+            listener.onError("Add itens into cart!")
         }
     }
 
